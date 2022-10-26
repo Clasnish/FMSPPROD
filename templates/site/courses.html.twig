@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block courses %} active {% endblock %}
+
+{% block title %} {{Compagny.Name}} {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block body %}
+
+  <main id="main" data-aos="fade-in">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="container">
+        <h2>Nos Formations</h2>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Popular Courses Section ======= -->
+    <section id="popular-courses" class="courses">
+      <div class="container" data-aos="fade-up">
+        {% for category in categories %}
+            <div class="section-title">
+              <p>{{category.name}}</p>
+              <h2>{{category.name}}</h2>
+            </div>
+            
+              <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                {% for faculty in category.Faculties %}
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                      <div class="course-item">
+                        <img src="{{FACULTY_BASE_PATH}}{{faculty.imageUrl}}" class="img-fluid" alt="...">
+                        <div class="course-content">
+                          <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4>{{faculty.name}}</h4>
+                          </div>
+                          <p>{{faculty.content|raw}}</p>
+                          <div class="btn-wrap">
+                              <a class="btn-buy" href="{{ path ('course', { 'id':faculty.id }) }}">Lire la suite &raquo;</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div> <!-- End Course Item-->
+                {% endfor %}
+              </div>
+
+        {% endfor %}
+      </div>
+    </section><!-- End Popular Courses Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

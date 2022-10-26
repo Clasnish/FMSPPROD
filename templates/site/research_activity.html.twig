@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+{% block courses %} active {% endblock %}
+
+{% block title %} {{Compagny.Name}} {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block script %} 
+  <script src="{{asset ('/scripts/bootstrap.min.js')}}"></script>
+  <script src="{{asset ('/scripts//jquery-1.11.1.min.js')}}"></script>
+  <!------ Include the above in your HEAD tag ---------->
+{% endblock %}
+{% block stylesheets %} 
+  <link href="{{asset ('/styles/bootstrap.min.cs')}}" rel="stylesheet" id="bootstrap-css">
+{% endblock %}
+
+{% block body %}
+
+
+  <main id="main" data-aos="fade-in">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="container">
+        <h2>Activités De Recherches</h2>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+<!-- ======= Popular Courses Section ======= -->
+    <section id="popular-courses" class="courses">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Recherches</h2>
+          <p>Les Magazines</p>
+        </div>
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h2></h2>
+            <div class="list-group list-group-flush">
+                <a href="{{ path ('ResearchActivity', {'DocumentType': 'Magazine'} )}}" class="list-group-item list-group-item-action list-group-item-success" aria-current="true">
+                  Magazine
+                </a>
+                <a href="{{ path ('ResearchActivity', {'DocumentType': 'Revue'} )}}" class="list-group-item list-group-item-action list-group-item-success" aria-current="true">
+                  Revue
+                </a>
+            </div>
+
+            
+            <br/>
+            <h2><a href ="{{ path ("news")}}">Actualités</a></h2>
+            <div class="list-group">
+              {% for event in events %}
+                <a href="{{ path ("event", {'id': event.id })}}" class="list-group-item list-group-item-action list-group-item-simple" aria-current="true">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{event.title}}</h5>
+                    
+                  </div>
+                  <p class="mb-1">{{event.description | raw}}</p>
+                  <small class="fst-italic text-center">{{event.created |format_datetime('full', 'none', locale='fr')}}</small>
+                </a>
+              {% endfor %}
+            </div>
+
+          </div>
+            
+            <div class="col-lg-9 col-md-6 d-flex align-items-stretch">
+              {% for exam in exams %}
+                  <div class="course-item">
+                    <img src="{{asset (FILE_BASE_PATH ~ exam.name) }}" class="img-fluid" style="width: 100px; height: 150px;" alt="...">
+                    <div class="course-content">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6>{{exam.DocumentTitle}}</h6>
+                      </div>
+                            <small class="fst-italic text-center">Publié le : {{exam.created |format_datetime('short', 'none', locale='fr')}}</small>
+                            <p>{{exam.description | raw}}</p>
+                            
+                      <div class="btn-wrap">
+                          <a class="btn-buy" href="{{exam.DocumentUrl}}">Télécharger &raquo;</a>
+                      </div>
+                    </div>
+                  </div><!-- End Course Item-->
+              {% endfor %}
+            </div>
+        </div>
+      </div>
+    </section><!-- End Popular Courses Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block infrastructures %} active {% endblock %}
+
+{% block title %} {{Compagny.Name}} {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block body %}
+
+  <main id="main">
+        <!-- ======= Events Section ======= -->
+    <section id="events" class="events">
+      <div class="container" data-aos="fade-up">        
+        <div class="row">
+        
+            {% for laboratory in laboratories %}
+            <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="{{asset (LABORATORY_BASE_PATH ~ laboratory.imageUrl)}}" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{ path ('laboratory', {'id':laboratory.id}) }}">{{laboratory.name}}</a></h5>
+                          {% if  (laboratory.description != "")%}
+                            <p align="justify" class="card-text">
+                                {{laboratory.description }}
+                            </p>
+                            <a href="{{ path ('laboratory', { 'id':laboratory.id }) }}" class="">Lire la suite &raquo;</a>
+                          {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>  
+      </div>
+    </section><!-- End Events Section -->
+  </main><!-- End #main -->
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

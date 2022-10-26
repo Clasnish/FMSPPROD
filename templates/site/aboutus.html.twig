@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+{% block About %} active {% endblock %}
+
+{% block title %} {{Compagny.Name}} {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block body %}
+
+  <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs" data-aos="fade-in">
+          <div class="container">
+            <h2>A Propos De Nous</h2>
+            <p></p>
+          </div>
+        </div><!-- End Breadcrumbs -->
+
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+          <div class="container" data-aos="fade-up">
+                <div class="row">
+                  <div class="pt-4 pt-lg-0 order-2 order-lg-1 content">
+                    <h3>Mot Du Doyen</h3>
+                    <p style = "text-align: justify;" >{{ Compagny.description |raw }}</p>
+                  </div>
+                </div>
+          </div>
+        </section><!-- End About Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts section-bg">
+      <div class="container">
+
+        <div class="row counters">
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>En quelque mot</h2>
+          <p>Nos Laboratoires</p>
+        </div>
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+          {% for laboratory in Laboratories %}
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <img src="{{LABORATORY_BASE_PATH}}{{laboratory.imageUrl}}" class="testimonial-img" alt="">
+                  <h3>{{laboratory.name}}</h3>
+                  
+                  <p style = "text-align: justify;">
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                      {{laboratory.description |raw  }}
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+          {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+        {% for library in Libraries %}
+            <div class="row">
+              <div class="section-title">
+                <p>Notre Bibliothèque</p>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                <img src="{{LIBRARY_BASE_PATH}}{{library.imageUrl}}" class="img-fluid" alt="">
+              </div>
+              <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                <p style = "text-align: justify;">{{ library.description }}</p>
+              </div>
+            </div>
+        {% endfor %}
+
+      </div>
+    </section><!-- End About Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

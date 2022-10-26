@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue!{% endblock %}
+{% block Nosservice %} active {% endblock %} 
+{% block body %}
+
+    <!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <section class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+    {% for page1 in Pages|slice(0, 1) %}
+      <h3 class="heading">{{page1.title}}</h3>
+      <p>{{page1.label}}</p>
+    {% endfor %}
+    </div>
+    
+    <ul class="nospace group">
+        {% set i=1 %}
+        {% for cat in category %}
+            <li class="one_third {% if i == 1 %} first {% endif %}">
+                <article><a href="#"><img class="inspace-10 btmspace-30 borderedbox" src="{{CATEGORIES_BASE_PATH}}{{cat.imageUrl}}" alt=""></a>
+                <ul class="nospace btmspace-10 inline pushright font-xs">
+                    <li><i class="fa fa-calendar-o"></i> {{cat.modified|format_datetime(locale='fr') }}</li>
+                </ul>
+                <h6 class="heading font-x1">{{cat.label}}&hellip;</h6>
+                <footer><a class="btn" href="{{ path ('category_show', { 'id':cat.id }) }}">Lire la suite &raquo;</a></footer>
+                </article>
+            </li>
+            {% set i= i + 1 %}
+        {% endfor %}
+      
+    </ul>
+    <!-- ################################################################################################ -->
+  </section>
+</div>
+{% endblock %}

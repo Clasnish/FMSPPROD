@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+
+        <!-- Favicons -->
+        <link rel="icon" href="{{asset('images/favicon.png') }}" />
+
+        <title>{% block title %}Welcome!{% endblock %}</title> 
+
+        
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href="{{asset('assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendor/aos/aos.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+        
+        <!-- Template Main CSS File -->
+        <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+
+    <body>
+        <!-- ======= Header ======= -->
+        <header id="header" class="fixed-top"> 
+        <!--<marquee>
+            Bienvenue A La Faculté De Médecine Et De Science Pharmaceutique de Douala
+        </marquee> -->
+            <div class="container d-flex align-items-center">
+                <!--<h1 class="logo me-auto"><a href="{{path('home')}}">{{Compagny.Name}}</a></h1>-->
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <a href="{{path('home')}}" class="logo me-auto" >
+                    <img src="{{ asset (COMPAGNY_BASE_PATH ~ Compagny.imageUrl) }}" alt="" class="img-fluid">
+                </a>
+                <nav id="navbar" class="navbar order-last order-lg-0">
+                    <ul>
+                        <li><a class="{% block Home %}{% endblock %} " href="{{path ('home')}}">Accueil</a></li>
+                        <li class="dropdown"><a href="#"><span>A propos</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="{{ asset ("upload/files/organigramme.pdf")}}">Organigramme</a></li>
+                                <li><a href="#">Nos Partenaires</a></li>
+                                <li><a href="{{ path ('oldmaster')}}">Anciens Dirigeants</a></li>
+                                <li><a href="{{ path ('aboutus')}}">A propos de FMSP</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown"><a href="#"><span>Formation</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li class="dropdown"><a href="{{ path ('courses')}}"><span>Nos Filieres</span> <i class="bi"></i></a></li>
+                                <li class="dropdown"><a href="{{ path ("departments")}}"><span>Departements</span> <i class="bi"></i></a></li>
+                                <li class="dropdown"><a href="{{ path ("staff")}}"><span>Scolarite</span> <i class="bi"></i></a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown {% block infrastructures %}{% endblock %}"><a href="#"><span>Infrastructures</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li class="dropdown"><a href="{{ path ('laboratories')}}"><span>Laboratoires</span> <i class="bi"></i></a></li>
+                                <li class="dropdown"><a href="{{ path ("library")}}"><span>Bibliotheque</span> <i class="bi"></i></a></li>
+                                <li class="dropdown"><a href="{{ path ("gallery")}}"><span>Gallerie</span> <i class="bi"></i></a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#"><span>Concours</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="{{ path ('communicated')}}">Communique</a></li>
+                                <li><a href="{{ path ('resultat_concours')}}">Resultats</a></li>
+                            </ul>
+                        </li>
+                        <!--
+                        <li class="dropdown"><a href="#"><span>Espace Etudiant</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="#">L'AE</a></li>
+                                <li><a href="#">Club et associations</a></li>
+                            </ul>
+                        </li>
+                        -->
+                         <li class="dropdown"><a href="#"><span>Resources</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="{{ path ('ResearchActivity')}}">Activité de recherche</a></li>
+                                <li><a href="{{ path ('planning_cours')}}">Emplois du temps</a></li>
+                                <li><a href="{{ path ('resultat_exams')}}">Resultats Examens</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="{% block news %}{% endblock %} " href="{{ path ('news')}}">Actualités</a></li>
+                        <li><a class="{% block contact %}{% endblock %} "  href="{{ path ('contactus')}}">Contact</a></li>
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
+                <!-- <a href="{{ path ('courses')}}" class="get-started-btn">Pour Commencer</a>-->
+                <a href="https://www.univ-douala.cm/" class="logo me-auto" style="margin-left: 100px;">
+                    <img src="{{ asset (COMPAGNY_BASE_PATH ~ 'logo ud.png') }}" alt="" class="img-fluid">
+                </a>
+                
+            </div>
+        </header><!-- End Header -->
+
+        {% block header %}{% endblock %}    
+        
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+
+        {% block body %}{% endblock %}
+        
+        <!-- ======= Footer ======= -->
+        <footer id="footer">
+
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>{{Compagny.Name}} </h3>
+                        <p>
+                        {{Compagny.Adress1}} - {{Compagny.Adress2}}<br>
+                        {{Compagny.Country}} - {{Compagny.City}}  <br>
+                        <strong>Phone:</strong> {{Compagny.Tel1}} / {{Compagny.Tel2}}<br>
+                        <strong>Email:</strong> {{Compagny.Email}}<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Liens Utiles</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{path ('home')}}">Accueil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="http://www.systhag-online.cm/">Télécharger mes quitus</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ path ('communicated')}}">Inscription Concours</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://www.univ-douala.cm/">Université de Douala</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://www.minesup.gov.cm/">MINESUP</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Nos Formations</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{path ('courses')}}">Nos Filieres</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ path ("courses", { "id": 2 }) }}">Master Professionnel</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ path ("courses", { "id": 3 }) }}">Licence Professionnelle</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ path ("courses", { "id": 4 }) }}">Diplome Universitaire</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ path ("courses", { "id": 1 }) }}">Formation initiale</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Rejoignez notre Newsletter</h4>
+                        <form action="" method="post">
+                        <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container d-md-flex py-4">
+
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                &copy; Copyright <strong><span>{{Compagny.Name}}</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
+                Designed by <a href="">DQ</a>
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="{{Compagny.twitter}}" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="{{Compagny.facebook}}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="{{Compagny.instagram}}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="{{Compagny.linkin}}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+            </div>
+        </footer><!-- End Footer -->
+
+        <div id="preloader"></div>
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+        {% block footer %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+
+            <!-- Vendor JS Files -->
+            <script src="{{asset('assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
+            <script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
+            <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+            <script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+            <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
+
+            <!-- Template Main JS File -->
+            <script src="{{asset('assets/js/main.js')}}"></script>
+
+
+
+    </body>
+</html>

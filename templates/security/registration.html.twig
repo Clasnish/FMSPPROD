@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Inscription! {% endblock %}
+{% block body %}
+
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="sidebar one_quarter first"> 
+      <!-- ################################################################################################ -->
+      <div class="sdb_holder">
+        <h6>{{Compagny.Name}}</h6>
+        <address>
+        {{Compagny.adress1}}<br>
+        {{Compagny.adress2}}<br>
+        {{Compagny.city}} / {{Compagny.country}}<br>
+        B.P. {{Compagny.pobox}} - {{Compagny.city}}<br>
+        <br>
+        Tel: {{Compagny.tel1}}<br>
+        Email: <a href="#">{{Compagny.email}}</a>
+        </address>
+      </div>
+
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="content three_quarter"> 
+      <div id="comments">
+            <h2>Inscription</h2>
+            {{ form_start(registrationform) }}
+                <div class="one_half first">
+                <label>Email<label/>
+                    {{ form_row (registrationform.email) }}
+                </div>
+                <div class="one_half">
+                <label>Prenom<label/>
+                    {{ form_row (registrationform.FirstName) }}
+                </div>
+                <div class="one_half first">
+                <label>Nom<label/>
+                    {{ form_row (registrationform.LastName) }}
+                </div>
+                <div class="one_half">
+                <label>Date de naissance<label/>
+                    {{ form_row (registrationform.Birthday) }}
+                </div>
+                <div class="one_half first">
+                <label>Telephone<label/>
+                    {{ form_row (registrationform.phone) }}
+                </div>
+                <div class="one_half" >
+                <label>Mot de passe<label/>
+                    {{ form_row (registrationform.password) }}
+                </div>
+                <div class="one_half first">
+                <label>Confirmer mot de passe<label/>
+                    {{ form_row (registrationform.confirmpassword) }}
+                </div>
+            {{ form_end(registrationform) }}
+      </div>
+    </div>
+    <div class="clear"></div>
+  </main>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

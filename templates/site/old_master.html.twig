@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block courses %} active {% endblock %}
+
+{% block title %} {{Compagny.Name}} {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block body %}
+
+  <main id="main" data-aos="fade-in">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="container">
+        <h2>Nos Anciens Dirigeants</h2>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Trainers Section ======= -->
+    <section id="trainers" class="trainers">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Nos Anciens Dirigeants</h2>
+        </div>
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+          {% for professor in professors %}
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <img src="{{PROFESSOR_BASE_PATH}}{{professor.imageUrl}}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>{{professor.FirstName}} {{professor.LastName}}</h4>
+                <span>{{professor.Fonction}}</span>
+                <p>
+                  {{professor.StartDate |format_datetime('short', 'none', locale='fr') }} - {{professor.EndDate |format_datetime('short', 'none', locale='fr')}}
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Trainers Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

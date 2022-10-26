@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+{% block infrastructures %} active {% endblock %}
+
+{% block title %} {{Compagny.Name}} {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block body %}
+
+  <main id="main" data-aos="fade-in">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="container">
+        <h2>Nos Infrastructures</h2>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Popular Courses Section ======= -->
+    <section id="popular-courses" class="courses">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Nos Infrastructures</h2>
+          <p>{{laboratory.name}}</p>
+        </div>
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-3 col-md-6">
+            <h2>Laboratoires</h2>
+            <div class="list-group list-group-flush">
+              {% for labo in laboratories %}
+                <a href="{{ path ('laboratory', {'id': labo.id} )}}" class="list-group-item list-group-item-action list-group-item-success {% if labo.id == laboratory.id %} active {% endif %}" aria-current="true">{{labo.name}}</a>
+              {% endfor %}
+            </div>
+          </div>
+
+
+          <div class="col-lg-9 col-md-6 d-flex align-items-stretch">
+            <div class="course-item">
+              <div class="col-lg-2 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                <img src="{{ asset(LABORATORY_BASE_PATH ~ laboratory.imageUrl) }}" align ="left" class="img-fluid" style="padding: 10px 10px 0 10px;"  alt="...">
+              </div>
+              <div class="course-content" >
+                <p class="fst-italic text-justify">{{laboratory.description |raw }}</p>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+        </div>
+
+      </div>
+    </section><!-- End Popular Courses Section -->
+  
+  <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>En quelques images</h2>
+        </div>
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+          {% for gallery in laboratory.Galleries %}
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="">
+                  <img src="{{asset(GALLERY_BASE_PATH ~ gallery.link)}}" class="col-lg-9" alt="">
+                  <p style = "text-align: justify;">
+                      {{gallery.comment |raw  }}
+                  </p>
+                </div>
+
+              </div>
+            </div><!-- End testimonial item -->
+          {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

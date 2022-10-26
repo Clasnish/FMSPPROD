@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block news %} active {% endblock %}
+
+{% block title %} {{Compagny.Name}} {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block body %}
+
+  <main id="main">
+        <!-- ======= Events Section ======= -->
+    <section id="events" class="events">
+      <div class="container" data-aos="fade-up">  
+        <div class="section-title">
+          <h2>Evenements</h2>
+        </div>      
+        <div class="row">
+        
+            {% for gallery in galleries %}
+            <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="{{asset (GALLERY_BASE_PATH ~ gallery.link)}}" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <p class="fst-italic text-center">{{gallery.created |format_datetime('full', 'none', locale='fr')}}</p>
+                            <p align="justify" class="card-text">
+                                {{gallery.comment | raw }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>  
+      </div>
+    </section><!-- End Events Section -->
+  </main><!-- End #main -->
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

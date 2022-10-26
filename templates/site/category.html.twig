@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{category.name}} {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block body %}
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content"> 
+      <!-- ################################################################################################ -->
+      <h1>{{category.name}}</h1>
+      <img class="imgr borderedbox inspace-5" src="{{CATEGORIES_BASE_PATH}}{{category.imageUrl}}" alt="">
+      <p>{{category.description | raw}}</p>
+    </div>  
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay light" style="background-image:url('/images/backgrounds/04.png');">
+  <article class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+    {% for page in pages|slice(0, 1) %}
+      <h3 class="heading">{{page.title}}</h3>
+      <p>{{page.label}}</p>
+    {% endfor %}
+    </div>
+    <figure>
+      <ul class="nospace group">
+        {% set i = 1%}
+        {% for product in category %}
+            <li class="one_quarter {% if i == 1 %} first {% endif %}"><a href="{{ path ('product_show', {'id':product.id })}}"><img src="{{PRODUCTS_BASE_PATH}}{{product.imageUrl}}" alt=""></a>
+            <p>{{product.name}}</p>
+            </li>
+            {% set i = i + 1 %}
+        {% endfor %}
+      </ul>
+    </figure>
+    <!-- ################################################################################################ -->
+  </article>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

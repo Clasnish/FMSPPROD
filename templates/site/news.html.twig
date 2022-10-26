@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block news %} active {% endblock %}
+
+{% block title %} {{Compagny.Name}} {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block body %}
+
+  <main id="main">
+        <!-- ======= Events Section ======= -->
+    <section id="events" class="events">
+      <div class="container" data-aos="fade-up">  
+        <div class="section-title">
+          <h2>Evenements</h2>
+        </div>      
+        <div class="row">
+        
+            {% for actu in news %}
+            <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="{{asset (NEWS_BASE_PATH ~ actu.imageUrl)}}" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{ path ('event', {'id':actu.id}) }}">{{actu.title}}</a></h5>
+                            <p class="fst-italic text-center">{{actu.created |format_datetime('full', 'none', locale='fr')}}</p>
+                            <p align="justify" class="card-text">
+                                {{actu.description }}
+                            </p>
+                            <a href="{{ path ('event', { 'id':actu.id }) }}" class="">Lire la suite &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>  
+      </div>
+    </section><!-- End Events Section -->
+  </main><!-- End #main -->
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

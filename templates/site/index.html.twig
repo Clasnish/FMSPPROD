@@ -1,0 +1,233 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue!{% endblock %}
+{% block Home %} active {% endblock %}
+
+{% block header %}
+    
+    <div class="bgded overlay">
+    <div id="pageintro" class="hoc clear">
+        <!-- ################################################################################################ -->
+        <div class="flexslider basicslider" >
+        <ul class="slides">
+            {% for Page in Pages %}
+            {% if Page.contentId == 'slide'%}
+                <li>
+                    <article>
+                        <p>{{ Compagny.Name }}</p>
+                        <h3 class="heading">{{Page.Title}}</h3>
+                        <p>{{Page.Content}}</p>
+                        <footer><a class="btn" href="#">En savoir plus</a></footer>
+                    </article>
+                </li>
+                {% endif %}
+            {% endfor %}
+            
+        </ul>
+        </div>
+        <!-- ################################################################################################ -->
+    </div>
+    </div>
+    
+
+    </div>
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+
+
+{% endblock %}
+
+{% block body %}
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex justify-content-center align-items-center" style="background: url({{asset('upload/images/fmsp-bg.jpg')}}) top center;">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Se Former Aujourd'hui,<br>Devenir Expert Demain</h1>
+      <h2>Nous Formons Les Experts Du Domaine De La Santé</h2>
+      <a href="{{ path ("courses")}}" class="btn-get-started">Commencer</a>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+        {% for page2 in Pages %}
+        {% if page2.contentId == 'about'%}
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+            <img src="{{PAGE_BASE_PATH}}{{page2.imageUrl}}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                <h3>{{page2.title}}</h3>
+                <p>{{ page2.content |raw }}</p>
+          </div>
+        {% endif %}
+        {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts section-bg">
+      <div class="container">
+
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="5000" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Etudiants</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="23" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Filières</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="117" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Enseignants</p>
+          </div>
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Laboratoires</p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Nos Formations academiques & professionnelles</h2>
+        </div>
+        <div class="row">
+
+      {% for category in categories %}
+
+          <div class="col-lg-3 col-md-6">
+            <div class="box {% if category.id == 2 %} featured {% endif %}">
+              <h3>{{category.name}}</h3>
+              <h4><sup></sup>{{category.period}}<span> An(s) </span></h4>
+
+              <ul>
+              {% set i = 0 %}
+              {% for filiere in category.faculties %}
+              {% set i = i+1 %}
+                {% if (i<= 2) %}
+                  {% if (i == 2) %}
+                    <li class="na">{{filiere.name}}</li>
+                  {% else %}
+                    <li>{{filiere.name}}</li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              </ul>
+              <div class="btn-wrap">
+                <a href="{{ path ("courses") }}" class="btn-buy">Voir Plus</a>
+              </div>
+            </div>
+          </div>
+                
+      {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+      
+    <!-- ======= Popular Courses Section ======= -->
+    <section id="popular-courses" class="courses">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Actualités De La Faculté</h2>
+          
+        </div>
+
+      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+          
+        {% for event in Actualities %}
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="">
+                  <div class="col-lg-10 d-flex align-items-stretch">
+                    <div class="course-item">
+                      <img src="{{NEWS_BASE_PATH}}{{event.imageUrl}}" class="img-fluid" alt="...">
+                      <div class="course-content">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                          <h4>{{event.title}}</h4>
+                           <small class="fst-italic text-center">Publié le : {{event.created |format_datetime('full', 'none', locale='fr')}}</small>
+                        </div>
+
+                        <h3><a href="{{path ("news", {'id': event.id})}}">{{event.title}}</a></h3>
+                        <p>{{event.description | raw}}</p>
+                      </div>
+                    </div>
+                  </div> <!-- End Course Item-->
+                </div>
+
+              </div>
+            </div><!-- End testimonial item -->
+          {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        
+        </div>
+
+      </div>
+    </section><!-- End Popular Courses Section -->
+
+    <!-- ======= Trainers Section ======= -->
+    <section id="trainers" class="trainers">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Quelques Dirigeants</h2>
+        </div>
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+          {% for professor in professors %}
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <img src="{{PROFESSOR_BASE_PATH}}{{professor.imageUrl}}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>{{professor.FirstName}} {{professor.LastName}}</h4>
+                <span>{{professor.Fonction}}</span>
+                <p>
+                  {{professor.description | raw}}
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Trainers Section -->
+
+
+  </main><!-- End #main -->
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+{% endblock %}

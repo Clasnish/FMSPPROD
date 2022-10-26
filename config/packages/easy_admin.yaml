@@ -1,0 +1,30 @@
+# config/packages/easy_admin.yaml
+easy_admin:
+    entities:
+        Product:
+            # ...
+            list:
+                fields:
+                    - { property: 'imageUrl', type: 'vich_file', base_path: '%app.path.product_images%', template: 'vich_uploader_image.html.twig' }
+            # ...
+            show:
+                fields:
+                    - { property: 'imageUrl', type: 'vich_file', base_path: '%app.path.product_images%' }
+            #
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'vich_file' }
+            #
+        admission:
+                        # ...
+            list:
+                fields:
+                    - { property: 'communicated', type: 'vich_file', base_path: '%app.path.admission_files%', template: 'vich_uploader_image.html.twig' }
+            # ...
+            show:
+                fields:
+                    - { property: 'communicated', type: 'vich_file', base_path: '%app.path.admission_files%' }
+            #
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'vich_file' }

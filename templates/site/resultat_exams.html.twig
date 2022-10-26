@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+{% block courses %} active {% endblock %}
+
+{% block title %} {{Compagny.Name}} {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block script %} 
+  <script src="{{asset ('/scripts/bootstrap.min.js')}}"></script>
+  <script src="{{asset ('/scripts//jquery-1.11.1.min.js')}}"></script>
+  <!------ Include the above in your HEAD tag ---------->
+{% endblock %}
+{% block stylesheets %} 
+  <link href="{{asset ('/styles/bootstrap.min.cs')}}" rel="stylesheet" id="bootstrap-css">
+{% endblock %}
+
+{% block body %}
+
+
+  <main id="main" data-aos="fade-in">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="container">
+        <h2>Resultats Examens FMSP</h2>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Popular Courses Section ======= -->
+    <section id="popular-courses" class="courses">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Sessions Normales</h2>
+          <p>Resultats Examens </p>
+        </div>
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h2>Sessions Actives</h2>
+            <div class="list-group list-group-flush">
+              {% for exam in exams %}
+                <a href="{{ path ('resultat_exams', {'id': exam.id} )}}" class="list-group-item list-group-item-action list-group-item-success {% if resultat is not null  %} {% if exam.id == resultat.id %} active {% endif %} {% endif %}" aria-current="true">
+                  {{exam.Session}}
+                </a>
+              {% endfor %}
+            </div>
+
+            
+            <br/>
+            <h2><a href ="{{ path ("news")}}">Actualités</a></h2>
+            <div class="list-group">
+            {% for event in events %}
+              <a href="{{ path ("event", {'id': event.id })}}" class="list-group-item list-group-item-action list-group-item-simple" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{event.title}}</h5>
+                  
+                </div>
+                <p class="mb-1">{{event.description | raw}}</p>
+                <small class="fst-italic text-center">{{event.created |format_datetime('full', 'none', locale='fr')}}</small>
+              </a>
+            {% endfor %}
+            </div>
+
+          </div>
+
+          <div class="col-lg-9 col-md-6 d-flex align-items-stretch">
+            {% if resultat is not null  %}
+              <div class="course-item col-lg-12">
+                <div class="course-content" >
+                  {% if resultat.communicated is not null  %}
+                    <i class="bi bi-download"></i><a href="{{asset (FILE_BASE_PATH ~ resultat.communicated) }}" > {{ resuultat.communicated }}</a>
+                    <br/>
+                  {% endif %}
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Filière</th>
+                            <th scope="col">Télécharger</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% set i = 1 %}
+                          {% for fichier in resultat.files %}
+                            {% if fichier.resultat %}
+                              <tr>
+                                <th scope="row">{{i}}</th>
+                                <td><a href="{{asset (FILE_BASE_PATH ~ fichier.name) }}" class="list-group-item list-group-item-action list-group-item-simple" aria-current="true">{{ fichier.faculty }}</a></td>
+                                <td><a href="{{asset (FILE_BASE_PATH ~ fichier.name) }}" class="list-group-item list-group-item-action list-group-item-simple" aria-current="true"><i class="bi bi-download "></i></a></td>
+                              </tr>
+                              {% set i = i + 1 %}
+                            {% endif %}
+                            
+                          {% endfor %}                    
+                        </tbody>
+                      </table>
+                </div>
+              </div>
+            {% endif %}
+          </div> <!-- End Course Item-->
+
+        </div>
+
+      </div>
+    </section><!-- End Popular Courses Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

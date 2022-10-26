@@ -1,0 +1,12 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+
+    date:
+            format: 'd M Y g:i A'
+            timezone: 'Africa/Douala'
+            
+when@test:
+    twig:
+        strict_variables: true
+        form_themes:
+            - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
